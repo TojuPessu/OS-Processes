@@ -9,24 +9,18 @@ void  main(void)
 {
      pid_t  pid;
      int    i;
-  
-  //holds strings
-     char   buf[BUF_SIZE];
-     char waldo[15];
+     char   waldo[BUF_SIZE];
 
      pid = fork();
-     
-      }
-     pid = getpid();
-     for (i = 1; i <= MAX_COUNT; i++) {
-       if(pid>0){
-         waldo = "parent";
-     
-       //lowlevel syscall equivalent to printf
-          sprintf(buf, "This line is from the parent pid %d, value = %d\n", getpid(), i);
-       }else if {
-          sprintf(buf, "This line is from the child pid %d, value = %d\n", getpid(), i);
-          write(1, buf, strlen(buf));
-     }
-}
 
+     for (i = 1; i <= MAX_COUNT; i++) {
+       if(pid > 0){
+         sprintf(waldo, "This line is from  the parent pid %d, value = %d\n", getpid(), i); 
+       }
+       
+       else if(pid == 0){
+         sprintf(waldo, "This line is from the child pid %d, value = %d\n", getpid(), i);  
+       }
+         write(1, waldo, strlen(waldo));  
+     } 
+}
